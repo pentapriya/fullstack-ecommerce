@@ -70,7 +70,15 @@ const registerUser=async(req,res)=>{
 }
 
 const adminLogin=async(req,res)=>{
-
+    try{
+        const {email,password}=req.body
+        if(email===process.env.ADMIN_EMAIL && password===process.env.ADMIN_PASSWORD){
+            const token=jwt.sign(email+password,process.env.SECRET_KEY)
+            res.status(201).json({success:true,token})
+        }
+    }catch(error){
+        res.json({success:false,message:error.message})
+    }
 }
 
 export default {loginUser,registerUser,adminLogin}
