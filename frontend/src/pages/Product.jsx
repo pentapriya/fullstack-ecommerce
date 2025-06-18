@@ -27,17 +27,17 @@ const Product = () => {
   },[productid])
 
   return productData ? (
-    <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
-      <div className="flex gap-6 flex-row h-[50%]">
-        <div className="flex-1 flex flex-row gap-4">
-          <div className="flex flex-col gap-2 w-[50%] h-[42%]">
+    <div className=' min-h-screen border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
+      <div className="flex gap-6 flex-row">
+        <div className="flex-1 flex flex-row gap-4  h-[100vh]">
+          <div className="flex flex-col gap-2 w-[20%] h-full">
             {productData.image.map((item,index)=>(
-              <img onClick={()=>setImage(item)} src={item} key={index} alt='' className='w-full flex-shrink-0 cursor-pointer h-[50%]'/>
+              <img onClick={()=>setImage(item)} src={item} key={index} alt='' className='w-full flex-shrink-0 cursor-pointer h-24 border rounded'/>
               
             ))}
           </div>
           <div className='w-full'>
-            <img src={image} alt='' className='w-[100%]'/>
+            <img src={image} alt='' className='w-[80%] h-[75vh]'/>
           </div>
         </div>
         <div className="flex-1">
@@ -69,7 +69,7 @@ const Product = () => {
           </div>
         </div>
       </div>
-      <div className='-mt-60'>
+      <div>
         <div className="flex">
           <b className='border px-5 py-3 text-sm'>Description</b>
           <p className='border px-5 py-3 text-sm'>Reviews(122)</p>
