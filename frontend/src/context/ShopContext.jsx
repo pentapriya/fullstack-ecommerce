@@ -14,6 +14,7 @@ const ShopContextProvider = (props) => {
     const [cartItems,setCartItems]=useState({})
     const navigate=useNavigate()
     const [products,setProducts]=useState([])
+    const [token,setToken]=useState('')
 
    const getProducts=async()=>{
     try{
@@ -69,6 +70,7 @@ const ShopContextProvider = (props) => {
       return totalCount
     }
 
+
     const updateQuantity=async(itemId,size,quantity)=>{
       let cartData=structuredClone(cartItems)
 
@@ -96,11 +98,16 @@ const ShopContextProvider = (props) => {
     }
 
     useEffect(()=>{
+      const tokenItem=localStorage.getItem("token")
       getProducts()
+      if(!token && tokenItem){
+        setToken(tokenItem)
+      }
     },[])
 
     const value={
-      products,currency,delivery_fee,navigate,search,setSearch,showSearch,setShowSearch,addToCart,getCartCount,cartItems,updateQuantity,getCartAmount,backendURL
+      products,currency,delivery_fee,navigate,search,setSearch,showSearch,setShowSearch,addToCart,
+      getCartCount,cartItems,updateQuantity,getCartAmount,backendURL,token,setToken,setCartItems
     }
     
   return (

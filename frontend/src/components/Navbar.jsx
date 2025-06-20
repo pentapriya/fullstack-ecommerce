@@ -7,7 +7,14 @@ import cartIcon from '../assets/shopping-cart.png'
 import { ShopContext } from '../context/ShopContext'
 
 const Navbar = () => {
-  const {setShowSearch,getCartCount}=useContext(ShopContext)
+  const {setShowSearch,getCartCount,setToken,navigate,setCartItems}=useContext(ShopContext)
+
+  const logoutHandler=()=>{
+    navigate('/login')
+    setToken("")
+    localStorage.removeItem('token')
+    setCartItems({})
+  }
   return (
     <div className='flex align-center justify-between py-5 font-medium'>
       <div className='flex align-center'>
@@ -39,9 +46,9 @@ const Navbar = () => {
           <img src={profile} alt='' className='w-5 cursor-pointer' />
           <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
             <div className='flex flex-col gap-2 w-36 px-5 py-3 bg-slate-100 text-gray-500 rounded'>
-              <Link to={'/login'}><p className='cursor-pointer hover:text-black'>My Profile</p></Link>
-              <p className='cursor-pointer hover:text-black'>Orders</p>
-              <p className='cursor-pointer hover:text-black'>Logout</p>
+              <p className='cursor-pointer hover:text-black'>My Profile</p>
+              <p className='cursor-pointer hover:text-black' onClick={()=>navigate("/orders")}>Orders</p>
+              <p className='cursor-pointer hover:text-black' onClick={()=>logoutHandler()}>Logout</p>
             </div>
           </div>
           
